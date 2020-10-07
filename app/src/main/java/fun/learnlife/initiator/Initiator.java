@@ -46,18 +46,18 @@ public class Initiator {
      */
     public void start() {
         sort();
-        for (final Task t : taskSorted) {
-            ThreadUtil.executeHigh(new Runnable() {
-                @Override
-                public void run() {
+        ThreadUtil.executeHigh(new Runnable() {
+            @Override
+            public void run() {
+                for (final Task t : taskSorted) {
                     if (!t.runOnMain()) {
-                        ThreadUtil.executeIo(t);
+                        ThreadUtil.executeHigh(t);
                     } else {
                         ThreadUtil.runOnUIThread(t);
                     }
                 }
-            });
-        }
+            }
+        });
         Log.e("lcy","start tasks end");
     }
 
