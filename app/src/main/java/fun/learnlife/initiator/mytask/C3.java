@@ -3,15 +3,16 @@ package fun.learnlife.initiator.mytask;
 import android.os.SystemClock;
 import android.util.Log;
 
+import fun.learnlife.initiator.task.MainTask;
 import fun.learnlife.initiator.task.Task;
 
-public class C3 extends Task {
+public class C3 extends MainTask {
     public String TAG = "C3";
 
     @Override
     public void onRun() {
         Log.i("lcy", TAG + " start! depends on C1,C2 run on "+Thread.currentThread().getName());
-        SystemClock.sleep((long) (Math.random() * 1000)+1000);
+        SystemClock.sleep((long) (Math.random() * 1000)+8000);
     }
 
     @Override
