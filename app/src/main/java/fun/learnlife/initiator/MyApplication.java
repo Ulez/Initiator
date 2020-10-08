@@ -37,6 +37,6 @@ public class MyApplication extends Application {
 
     @Override
     public Context getApplicationContext() {
-        return super.getApplicationContext();
+        return this;
     }
 }
