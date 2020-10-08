@@ -26,13 +26,13 @@ wall time：包含等待的时间片。（就绪状态：等待时间片的到�
 
 拓扑排序示例：
 
-<img src="https://github.com/Ulez/Initiator/blob/master/screenshots/1.png" width = "116" height = "120" align=center />
+<img src="https://github.com/Ulez/Initiator/blob/master/screenshots/1.png" width = "216" height = "220" align=center />
 
-<img src="https://github.com/Ulez/Initiator/blob/master/screenshots/2.png" width = "116" height = "80" align=center />
+<img src="https://github.com/Ulez/Initiator/blob/master/screenshots/2.png" width = "216" height = "160" align=center />
 
 运行效果：
 
-<img src="https://github.com/Ulez/Initiator/blob/master/screenshots/3.png" width = "316" height = "120" align=center />
+<img src="https://github.com/Ulez/Initiator/blob/master/screenshots/3.png" width = "616" height = "240" align=center />
 
 使用方式：
 
