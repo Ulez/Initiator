@@ -2,6 +2,7 @@ package fun.learnlife.initiator;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Looper;
 import android.util.Log;
 
 import fun.learnlife.initiator.mytask.C1;
@@ -51,6 +52,7 @@ public class MyApplication extends Application {
             @Override
             public void run() {
 //                提前异步类加载,需要加载哪些用替换系统ClassLoader打印出来。
+                Looper.prepare();
                 new MainActivity();
             }
         }).start();
