@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -49,12 +50,19 @@ public class ThreadUtil {
     private static ExecutorService mIoService = new ThreadPoolExecutor(0, Integer.MAX_VALUE, KEEP_ALIVE_TIME, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
 
 
+    private static ExecutorService mLowService = Executors.newSingleThreadScheduledExecutor();
+
+
     public static void executeHigh(Runnable runnable) {
         mHighService.execute(runnable);
     }
 
     public static void executeIo(Runnable runnable) {
         mIoService.execute(runnable);
+    }
+
+    public static void executeLow(Runnable runnable) {
+        mLowService.execute(runnable);
     }
 
 }

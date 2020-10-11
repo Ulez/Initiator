@@ -10,6 +10,8 @@ import fun.learnlife.initiator.mytask.C12;
 import fun.learnlife.initiator.mytask.C13;
 import fun.learnlife.initiator.mytask.C14;
 import fun.learnlife.initiator.mytask.C2;
+import fun.learnlife.initiator.mytask.C22;
+import fun.learnlife.initiator.mytask.C23;
 import fun.learnlife.initiator.mytask.C3;
 import fun.learnlife.initiator.mytask.C7;
 import fun.learnlife.initiator.mytask.C8;
@@ -21,6 +23,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Initiator.getInstance()
+                .addTask(new C23())
+                .addTask(new C22())
                 .addTask(new C14())
                 .addTask(new C13())
                 .addTask(new C12())

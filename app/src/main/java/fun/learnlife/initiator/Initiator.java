@@ -1,5 +1,7 @@
 package fun.learnlife.initiator;
 
+import android.os.Looper;
+import android.os.MessageQueue;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -14,6 +16,24 @@ public class Initiator {
     private Stack<Task> tmpStack = new Stack<>();
     private ArrayList<Task> taskAll = new ArrayList<>();
     private ArrayList<Task> taskSorted = new ArrayList<>();
+
+    private Stack<Task> idleTasks = new Stack<>();
+
+    private MessageQueue.IdleHandler idleHandler = new MessageQueue.IdleHandler() {
+        @Override
+        public boolean queueIdle() {
+            if (!idleTasks.isEmpty()){
+                Task t = idleTasks.pop();
+                if (t.runOnMain()){
+                    ThreadUtil.runOnUIThread(t);
+                }else {
+                    ThreadUtil.executeLow(t);
+                }
+            }
+            //false时移除，true重复使用
+            return !idleTasks.isEmpty();
+        }
+    };
 
     private Initiator() {
 
@@ -37,7 +57,11 @@ public class Initiator {
      * @return
      */
     public Initiator addTask(Task task) {
-        taskAll.add(task);
+        if (task.runOnIdle()){
+            idleTasks.add(task);
+        }else {
+            taskAll.add(task);
+        }
         return mInstance;
     }
 
@@ -58,6 +82,7 @@ public class Initiator {
                 }
             }
         });
+        Looper.myQueue().addIdleHandler(idleHandler);
         Log.e("lcy","start tasks end");
     }
 

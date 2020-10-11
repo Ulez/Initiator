@@ -39,6 +39,10 @@ public abstract class Task implements Runnable {
         return false;
     }
 
+    public boolean runOnIdle() {
+        return false;
+    }
+
     public void setMsg(String msg) {
         this.msg = msg;
     }
