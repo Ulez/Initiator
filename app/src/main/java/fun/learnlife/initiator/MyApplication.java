@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Looper;
 import android.util.Log;
 
+import de.robv.android.xposed.DexposedBridge;
+import de.robv.android.xposed.XC_MethodHook;
 import fun.learnlife.initiator.mytask.C1;
 import fun.learnlife.initiator.mytask.C10;
 import fun.learnlife.initiator.mytask.C11;
@@ -48,6 +50,19 @@ public class MyApplication extends Application {
         Log.i("lcy","MyApplication attachBaseContext");
 //        提前加载SharedPreference
 //        MultiDex.install(this);
+        DexposedBridge.hookAllConstructors(Thread.class, new XC_MethodHook() {
+            @Override
+            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                super.beforeHookedMethod(param);
+            }
+
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+                Thread thread = (Thread) param.thisObject;
+                Log.i("lcyyy",thread.getName()+",stack="+Log.getStackTraceString(new Throwable()));
+            }
+        });
         new Thread(new Runnable() {
             @Override
             public void run() {
